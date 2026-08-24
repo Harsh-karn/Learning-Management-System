@@ -5,7 +5,7 @@ export default factories.createCoreController('api::progress.progress', ({ strap
     const user = ctx.state.user;
     if (!user) return ctx.unauthorized();
 
-    const userWithRole = await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] });
+    const userWithRole = (await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] })) as any;
     const roleName = userWithRole?.role?.name;
 
     // Enforce access control at the query level
@@ -35,12 +35,12 @@ export default factories.createCoreController('api::progress.progress', ({ strap
     const user = ctx.state.user;
     if (!user) return ctx.unauthorized();
 
-    const userWithRole = await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] });
+    const userWithRole = (await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] })) as any;
     const roleName = userWithRole?.role?.name;
 
-    const progress = await strapi.entityService.findOne('api::progress.progress', id, {
+    const progress = (await strapi.entityService.findOne('api::progress.progress', id, {
       populate: ['student', 'course.instructor']
-    });
+    })) as any;
 
     if (!progress) return ctx.notFound();
 

@@ -5,7 +5,7 @@ export default factories.createCoreController('api::lesson.lesson', ({ strapi })
     const user = ctx.state.user;
     if (!user) return ctx.unauthorized();
 
-    const userWithRole = await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] });
+    const userWithRole = (await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] })) as any;
     const roleName = userWithRole?.role?.name;
 
     if (roleName === 'Student') {
@@ -16,7 +16,7 @@ export default factories.createCoreController('api::lesson.lesson', ({ strapi })
       const courseId = ctx.request.body.data?.course;
       if (!courseId) return ctx.badRequest('Course ID is required.');
       
-      const course = await strapi.entityService.findOne('api::course.course', courseId, { populate: ['instructor'] });
+      const course = (await strapi.entityService.findOne('api::course.course', courseId, { populate: ['instructor'] })) as any;
       if (!course) return ctx.notFound('Course not found.');
       if (course.instructor?.id !== user.id) {
         return ctx.forbidden('You can only add lessons to your own courses.');
@@ -32,11 +32,11 @@ export default factories.createCoreController('api::lesson.lesson', ({ strapi })
     const user = ctx.state.user;
     if (!user) return ctx.unauthorized();
 
-    const userWithRole = await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] });
+    const userWithRole = (await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] })) as any;
     const roleName = userWithRole?.role?.name;
 
     if (roleName === 'Instructor') {
-      const lesson = await strapi.entityService.findOne('api::lesson.lesson', id, { populate: ['course.instructor'] });
+      const lesson = (await strapi.entityService.findOne('api::lesson.lesson', id, { populate: ['course.instructor'] })) as any;
       if (!lesson) return ctx.notFound();
       if (lesson.course?.instructor?.id !== user.id) {
         return ctx.forbidden('You can only update lessons in your own courses.');
@@ -45,7 +45,7 @@ export default factories.createCoreController('api::lesson.lesson', ({ strapi })
       // Also prevent moving lesson to another instructor's course
       const newCourseId = ctx.request.body.data?.course;
       if (newCourseId && newCourseId !== lesson.course?.id) {
-        const newCourse = await strapi.entityService.findOne('api::course.course', newCourseId, { populate: ['instructor'] });
+        const newCourse = (await strapi.entityService.findOne('api::course.course', newCourseId, { populate: ['instructor'] })) as any;
         if (newCourse?.instructor?.id !== user.id) {
           return ctx.forbidden('You cannot move a lesson to a course you do not own.');
         }
@@ -61,11 +61,11 @@ export default factories.createCoreController('api::lesson.lesson', ({ strapi })
     const user = ctx.state.user;
     if (!user) return ctx.unauthorized();
 
-    const userWithRole = await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] });
+    const userWithRole = (await strapi.entityService.findOne('plugin::users-permissions.user', user.id, { populate: ['role'] })) as any;
     const roleName = userWithRole?.role?.name;
 
     if (roleName === 'Instructor') {
-      const lesson = await strapi.entityService.findOne('api::lesson.lesson', id, { populate: ['course.instructor'] });
+      const lesson = (await strapi.entityService.findOne('api::lesson.lesson', id, { populate: ['course.instructor'] })) as any;
       if (!lesson) return ctx.notFound();
       if (lesson.course?.instructor?.id !== user.id) {
         return ctx.forbidden('You can only delete lessons from your own courses.');
