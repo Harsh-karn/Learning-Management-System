@@ -18,7 +18,7 @@ export default function ManageLesson() {
   useEffect(() => {
     const fetchLesson = async () => {
       try {
-        const res = await fetch(`http://localhost:1337/api/lessons/${id}?populate=course`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/lessons/${id}?populate=course`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const data = await res.json();
@@ -42,7 +42,7 @@ export default function ManageLesson() {
     e.preventDefault();
     setSaving(true);
     try {
-      await fetch(`http://localhost:1337/api/lessons/${id}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/lessons/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

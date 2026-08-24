@@ -27,7 +27,7 @@ export default function ManageQuiz() {
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
-        const res = await fetch(`http://localhost:1337/api/quizzes?filters[course][id][$eq]=${courseId}&populate=questions`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/quizzes?filters[course][id][$eq]=${courseId}&populate=questions`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const data = await res.json();
@@ -85,7 +85,7 @@ export default function ManageQuiz() {
 
       if (quizId) {
         // Update
-        await fetch(`http://localhost:1337/api/quizzes/${quizId}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/quizzes/${quizId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -95,7 +95,7 @@ export default function ManageQuiz() {
         });
       } else {
         // Create
-        await fetch(`http://localhost:1337/api/quizzes`, {
+        await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/quizzes`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

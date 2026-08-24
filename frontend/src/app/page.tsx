@@ -23,7 +23,7 @@ export default function Home() {
         ? { identifier, password }
         : { username, email, password };
 
-      const res = await fetch(`http://localhost:1337${endpoint}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -37,7 +37,7 @@ export default function Home() {
 
       // Strapi doesn't return role details by default in auth response.
       // We'll need to fetch user details to get the role.
-      const userRes = await fetch(`http://localhost:1337/api/users/me?populate=role`, {
+      const userRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/users/me?populate=role`, {
         headers: {
           Authorization: `Bearer ${data.jwt}`,
         },

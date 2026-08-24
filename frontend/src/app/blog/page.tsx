@@ -23,7 +23,7 @@ export default function BlogList() {
       try {
         // By default Strapi v5 filters out unpublished items (drafts) automatically for standard APIs
         // unless you pass publicationState=preview and are authenticated with proper permissions.
-        const res = await fetch(`http://localhost:1337/api/blog-posts?populate=author`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/blog-posts?populate=author`, {
           headers: jwt ? { Authorization: `Bearer ${jwt}` } : {}
         });
         const data = await res.json();

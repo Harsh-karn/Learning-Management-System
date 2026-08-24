@@ -34,7 +34,7 @@ export default function CourseDetailPage() {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const res = await fetch(`http://localhost:1337/api/courses/${id}?populate=instructor,lessons,students`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses/${id}?populate=instructor,lessons,students`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const data = await res.json();
@@ -77,7 +77,7 @@ export default function CourseDetailPage() {
       // In Strapi v5, updating a relation requires updating the document
       const updatedStudents = [...(course.students || []).map(s => s.id), user.id];
       
-      const res = await fetch(`http://localhost:1337/api/courses/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

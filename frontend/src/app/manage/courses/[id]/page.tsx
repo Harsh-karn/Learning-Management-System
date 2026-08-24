@@ -19,7 +19,7 @@ export default function ManageCourseDetail() {
 
   const fetchCourse = async () => {
     try {
-      const res = await fetch(`http://localhost:1337/api/courses/${id}?populate=lessons`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses/${id}?populate=lessons`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       const data = await res.json();
@@ -47,7 +47,7 @@ export default function ManageCourseDetail() {
     
     try {
       const sequence = (course.lessons?.length || 0) + 1;
-      const res = await fetch(`http://localhost:1337/api/lessons`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/lessons`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,7 +74,7 @@ export default function ManageCourseDetail() {
   const handleDeleteLesson = async (lessonId: number) => {
     if (!confirm("Are you sure?")) return;
     try {
-      await fetch(`http://localhost:1337/api/lessons/${lessonId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/lessons/${lessonId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${jwt}` }
       });

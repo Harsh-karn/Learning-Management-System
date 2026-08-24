@@ -35,7 +35,7 @@ export default function TakeQuiz() {
     const fetchQuizAndResults = async () => {
       try {
         // Fetch Quiz
-        const res = await fetch(`http://localhost:1337/api/quizzes?filters[course][id][$eq]=${courseId}&populate=questions`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/quizzes?filters[course][id][$eq]=${courseId}&populate=questions`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const data = await res.json();
@@ -49,7 +49,7 @@ export default function TakeQuiz() {
           });
 
           // Fetch previous result if any
-          const resResult = await fetch(`http://localhost:1337/api/quiz-results?filters[quiz][id][$eq]=${q.id}&filters[student][id][$eq]=${user?.id}`, {
+          const resResult = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/quiz-results?filters[quiz][id][$eq]=${q.id}&filters[student][id][$eq]=${user?.id}`, {
             headers: { Authorization: `Bearer ${jwt}` },
           });
           const resultData = await resResult.json();
@@ -87,7 +87,7 @@ export default function TakeQuiz() {
     setSubmitting(true);
 
     try {
-      await fetch(`http://localhost:1337/api/quiz-results`, {
+      await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/quiz-results`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

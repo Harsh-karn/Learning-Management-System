@@ -27,21 +27,21 @@ export default function AdminPanel() {
   const fetchData = async () => {
     try {
       // Fetch users
-      const usersRes = await fetch(`http://localhost:1337/api/users?populate=role`, {
+      const usersRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/users?populate=role`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       const usersData = await usersRes.json();
       setUsers(usersData);
 
       // Fetch roles
-      const rolesRes = await fetch(`http://localhost:1337/api/users-permissions/roles`, {
+      const rolesRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/users-permissions/roles`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       const rolesData = await rolesRes.json();
       if (rolesData.roles) setRoles(rolesData.roles);
 
       // Fetch stats (courses)
-      const coursesRes = await fetch(`http://localhost:1337/api/courses?populate=students`, {
+      const coursesRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses?populate=students`, {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       const coursesData = await coursesRes.json();
@@ -67,7 +67,7 @@ export default function AdminPanel() {
 
   const handleRoleChange = async (userId: number, roleId: number) => {
     try {
-      await fetch(`http://localhost:1337/api/users/${userId}`, {
+      await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/users/${userId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -15,7 +15,7 @@ export default function CoursesPage() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const res = await fetch("http://localhost:1337/api/courses?populate=instructor", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || '${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}'}/api/courses?populate=instructor`, {
           headers: {
             Authorization: `Bearer ${jwt}`,
           },

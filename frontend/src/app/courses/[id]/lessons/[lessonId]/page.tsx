@@ -36,19 +36,19 @@ export default function LessonPage() {
     const fetchData = async () => {
       try {
         // Fetch lesson details
-        const lessonRes = await fetch(`http://localhost:1337/api/lessons/${lessonId}`, {
+        const lessonRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/lessons/${lessonId}`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const lessonData = await lessonRes.json();
         
         // Fetch course lessons to determine sequence/next
-        const courseRes = await fetch(`http://localhost:1337/api/courses/${courseId}?populate=lessons`, {
+        const courseRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses/${courseId}?populate=lessons`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const courseData = await courseRes.json();
         
         // Fetch user progress for this course
-        const progressRes = await fetch(`http://localhost:1337/api/progresses?filters[course][id][$eq]=${courseId}&filters[student][id][$eq]=${user?.id}&populate=lesson`, {
+        const progressRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/progresses?filters[course][id][$eq]=${courseId}&filters[student][id][$eq]=${user?.id}&populate=lesson`, {
           headers: { Authorization: `Bearer ${jwt}` },
         });
         const progressD = await progressRes.json();
@@ -83,7 +83,7 @@ export default function LessonPage() {
       
       if (existingProgress) {
         // Update to complete
-        await fetch(`http://localhost:1337/api/progresses/${existingProgress.id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/progresses/${existingProgress.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export default function LessonPage() {
         });
       } else {
         // Create new progress entry
-        await fetch(`http://localhost:1337/api/progresses`, {
+        await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/progresses`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

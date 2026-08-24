@@ -15,7 +15,7 @@ export default function CourseManagement() {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        let endpoint = `http://localhost:1337/api/courses?populate=instructor`;
+        let endpoint = `${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses?populate=instructor`;
         
         // Instructors only see their own courses
         if (user?.role?.name === "Instructor") {
@@ -51,7 +51,7 @@ export default function CourseManagement() {
     if (!title) return;
     
     try {
-      const res = await fetch(`http://localhost:1337/api/courses`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/courses`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
