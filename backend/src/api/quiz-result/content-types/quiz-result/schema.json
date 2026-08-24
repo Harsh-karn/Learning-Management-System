@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "quiz_results",
+  "info": {
+    "singularName": "quiz-result",
+    "pluralName": "quiz-results",
+    "displayName": "QuizResult",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "score": {
+      "type": "integer",
+      "required": true
+    },
+    "student": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "quiz": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::quiz.quiz"
+    }
+  }
+}
