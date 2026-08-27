@@ -3,7 +3,7 @@
 A production-quality Learning Management System built for a strict technical evaluation. This project prioritizes human-readable code, explicit architectural boundaries, and a clean, functional UI over speculative abstraction and "AI-generated" aesthetics.
 
 ## Live Links
-- **Frontend (Vercel):** [Insert Vercel Link Here]
+- **Frontend (Vercel):** https://learning-management-system-ten-rho.vercel.app/
 - **Backend/CMS (Railway):** https://learning-management-system-production-3a65.up.railway.app/
 
 ---
