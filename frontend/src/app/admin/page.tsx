@@ -114,8 +114,8 @@ export default function AdminPanel() {
           <h3>Users by Role</h3>
           <div style={{ display: "flex", gap: "2rem", marginTop: "1rem" }}>
             {Object.entries(roleCounts).map(([role, count]) => (
-              <div key={role} style={{ background: "rgba(255,255,255,0.05)", padding: "1rem", borderRadius: "0.5rem", flex: 1, textAlign: "center" }}>
-                <div style={{ color: "#94a3b8", fontSize: "0.9rem", marginBottom: "0.5rem" }}>{role}</div>
+              <div key={role} style={{ background: "#f3f4f6", padding: "1rem", borderRadius: "0.5rem", flex: 1, textAlign: "center", border: "1px solid var(--border-color)" }}>
+                <div style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginBottom: "0.5rem" }}>{role}</div>
                 <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{count}</div>
               </div>
             ))}
@@ -135,7 +135,7 @@ export default function AdminPanel() {
             </thead>
             <tbody>
               {users.map(u => (
-                <tr key={u.id} style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+                <tr key={u.id} style={{ borderBottom: "1px solid var(--border-color)" }}>
                   <td style={{ padding: "1rem" }}>{u.id}</td>
                   <td style={{ padding: "1rem", fontWeight: "500" }}>{u.username}</td>
                   <td style={{ padding: "1rem", color: "#94a3b8" }}>{u.email}</td>
@@ -143,7 +143,7 @@ export default function AdminPanel() {
                     <select 
                       value={u.role?.id || ""} 
                       onChange={(e) => handleRoleChange(u.id, parseInt(e.target.value))}
-                      style={{ padding: "0.5rem", borderRadius: "0.25rem", background: "rgba(15,23,42,0.8)", color: "white", border: "1px solid var(--border-color)" }}
+                      style={{ padding: "0.4rem", borderRadius: "0.25rem", background: "#fff", color: "inherit", border: "1px solid var(--border-color)" }}
                     >
                       <option value="" disabled>Select Role</option>
                       {roles.map(r => (

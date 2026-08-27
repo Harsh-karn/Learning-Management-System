@@ -129,7 +129,7 @@ export default function TakeQuiz() {
             <div style={{ fontSize: "4rem", fontWeight: "bold", color: result >= 50 ? "#10b981" : "#ef4444", margin: "1.5rem 0" }}>
               {result}%
             </div>
-            <p style={{ marginBottom: "2rem", color: "#94a3b8" }}>
+            <p style={{ marginBottom: "2rem", color: "var(--text-muted)" }}>
               {result >= 50 ? "Great job!" : "Keep practicing and try again."}
             </p>
             <button onClick={() => router.push(`/courses/${courseId}`)} className="primary-button">
@@ -143,7 +143,7 @@ export default function TakeQuiz() {
                 <h3 style={{ marginBottom: "1rem" }}>{idx + 1}. {q.text}</h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                   {q.options.map((opt, oIdx) => (
-                    <label key={oIdx} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "1rem", background: answers[idx] === oIdx ? "rgba(59, 130, 246, 0.2)" : "rgba(15, 23, 42, 0.4)", border: answers[idx] === oIdx ? "1px solid var(--primary-color)" : "1px solid var(--border-color)", borderRadius: "0.5rem", cursor: "pointer", transition: "all 0.2s" }}>
+                    <label key={oIdx} style={{ display: "flex", alignItems: "center", gap: "0.75rem", padding: "1rem", background: answers[idx] === oIdx ? "rgba(59, 130, 246, 0.15)" : "#f9fafb", border: answers[idx] === oIdx ? "1px solid var(--primary-color)" : "1px solid var(--border-color)", borderRadius: "0.5rem", cursor: "pointer", transition: "all 0.2s" }}>
                       <input 
                         type="radio" 
                         name={`question-${idx}`}

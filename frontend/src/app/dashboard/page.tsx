@@ -47,7 +47,7 @@ export default function Dashboard() {
                 <p>View courses you are enrolled in.</p>
                 <div style={{ marginTop: "10px", display: "flex", flexDirection: "column", gap: "10px" }}>
                   {enrolledCourses.length === 0 ? (
-                    <p style={{ fontSize: "14px", color: "#94a3b8", padding: "10px", backgroundColor: "#1e293b", borderRadius: "5px" }}>
+                    <p style={{ fontSize: "14px", color: "var(--text-muted)", padding: "10px", backgroundColor: "#f3f4f6", borderRadius: "5px" }}>
                       <em>You are not enrolled in any courses yet.</em>
                     </p>
                   ) : (
