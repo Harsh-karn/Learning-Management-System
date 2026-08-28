@@ -66,7 +66,7 @@ export default function Dashboard() {
               <div className="card">
                 <h3>Manage Platform</h3>
                 <p>Manage all courses, lessons, and quizzes.</p>
-                <a href="/content-manager" className="card-link">Content Manager &rarr;</a>
+                <a href="/manage/courses" className="card-link">Content Manager &rarr;</a>
               </div>
             )}
 
