@@ -74,7 +74,7 @@ export default function Dashboard() {
               <div className="card">
                 <h3>My Teaching</h3>
                 <p>Manage your own courses.</p>
-                <a href="/instructor" className="card-link">Instructor Panel &rarr;</a>
+                <a href="/manage/courses" className="card-link">Instructor Panel &rarr;</a>
               </div>
             )}
 
