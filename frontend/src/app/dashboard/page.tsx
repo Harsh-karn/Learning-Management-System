@@ -58,7 +58,8 @@ export default function Dashboard() {
                     ))
                   )}
                 </div>
-                <a href="/courses" className="card-link" style={{ display: 'block', marginTop: '15px' }}>Browse All Courses &rarr;</a>
+                <a href="/courses" className="card-link" style={{ display: 'block', marginTop: '15px', marginBottom: '0.5rem' }}>Browse All Courses &rarr;</a>
+                <a href="/blog" className="card-link" style={{ display: 'block' }}>Read the Blog &rarr;</a>
               </div>
             )}
 
@@ -66,7 +67,8 @@ export default function Dashboard() {
               <div className="card">
                 <h3>Manage Platform</h3>
                 <p>Manage all courses, lessons, and quizzes.</p>
-                <a href="/manage/courses" className="card-link">Content Manager &rarr;</a>
+                <a href="/manage/courses" className="card-link" style={{ display: "block", marginBottom: "0.5rem" }}>Content Manager &rarr;</a>
+                <a href="/manage/blog" className="card-link" style={{ display: "block" }}>Manage Blog &rarr;</a>
               </div>
             )}
 
