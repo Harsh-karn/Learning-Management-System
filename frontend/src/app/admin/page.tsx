@@ -31,7 +31,12 @@ export default function AdminPanel() {
         headers: { Authorization: `Bearer ${jwt}` },
       });
       const usersData = await usersRes.json();
-      setUsers(usersData);
+      if (Array.isArray(usersData)) {
+        setUsers(usersData);
+      } else {
+        console.error("Failed to fetch users:", usersData);
+        setUsers([]);
+      }
 
       // Fetch roles
       const rolesRes = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL || 'http://localhost:1337'}/api/users-permissions/roles`, {
